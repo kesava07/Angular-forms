@@ -1,0 +1,59 @@
+<div class="container-fluid">
+        <div class="col-md-5 m-auto">
+          <div class="card card-body mt-3">
+            <h3 class="text-primary text-center">Sign Up</h3>
+            <form #frm="ngForm" (ngSubmit)="submitForm(frm)">
+              <div ngModelGroup="login" #login="ngModelGroup">
+                <div class="form-group">
+                  <label for="userName">User Name</label>
+                  <input required ngModel minlength="5" #userName="ngModel" name="userName" type="text" class="form-control"
+                    placeholder="User name" id="userName" />
+                  <div class="text-danger" *ngIf="  userName.touched && !userName.valid">
+                    <p *ngIf="userName.errors.required">User name is required</p>
+                    <p *ngIf="userName.errors.minlength">User name should contain atleast
+                      {{userName.errors.minlength.requiredLength}} charecters</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input required ngModel #email="ngModel" name="email" type="email" class="form-control" placeholder="Email"
+                    id="email" />
+                  <div class="text-danger" *ngIf="  email.touched && !email.valid">
+                    <p *ngIf="email.errors.required">email is required</p>
+                  </div>
+                </div>
+      
+                <div class="form-group">
+                  <label for="sel1">Contact Method:</label>
+                  <select ngModel #methodOfContact="ngModel" name="methodOfContact" class="form-control" id="sel1">
+                    <option selected="true" disabled="disabled" value>select an option</option>
+                    <option *ngFor="let methods of contactMethod" [value]="methods.method">{{methods.method}}</option>
+                  </select>
+                </div>
+      
+                <div class="custom-control custom-radio">
+                  <input ngModel #gender="ngModel" type="radio" class="custom-control-input" id="male" name="gender" value="Male">
+                  <label class="custom-control-label" for="male">Male</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" ngModel #gender="ngModel" class="custom-control-input" id="female" name="gender" value="Female">
+                  <label class="custom-control-label" for="female">Female</label>
+                </div>
+      
+      
+                <div class="custom-control custom-checkbox mb-2">
+                  <input ngModel #termsConditions="ngModel" name="termsConditions" type="checkbox"
+                    class="custom-control-input" id="terms">
+                  <label class="custom-control-label" for="terms">Agree terms and conditions?</label>
+                </div>
+      
+                <button class="btn btn-outline-primary">Submit</button>
+      
+                <div class="alert alert-danger mt-3" *ngIf="!login.valid && frm.submitted">
+                  The form is in valid
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>

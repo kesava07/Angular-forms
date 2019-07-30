@@ -1,0 +1,42 @@
+<div class="conatiner-fluid">
+    <div class="col-md-4 m-auto">
+        <div class="card card-body mt-5">
+            <h3 class="text-center text-primary">Login</h3>
+            <form [formGroup]="form" (ngSubmit)="handleLogin()">
+                <div formGroupName="account">
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input formControlName="userName" type="email" class="form-control" id="email" />
+                        <div *ngIf="userName.pending" class="spinner-border text-muted loader-style"></div>
+                        <div class="text-danger" *ngIf="userName.touched && userName.invalid">
+                            <small *ngIf="userName.errors.required">User name is required</small>
+                            <small *ngIf="userName.errors.minlength">User name should contain
+                                atleast
+                                {{userName.errors.minlength.requiredLength}} charecters</small>
+                            <small *ngIf="userName.errors.cannotContainSpace">User name does not
+                                contains any space</small>
+                            <small *ngIf="userName.errors.shouldBeUnique">The user name already
+                                taken</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input formControlName="password" type="password" class="form-control" id="password">
+                        <div *ngIf="password.pending" class="spinner-border text-muted loader-style"></div>
+                        <div class="text-danger" *ngIf="password.touched && password.invalid">
+                            <small *ngIf="password.errors.required">Password is required</small>
+                            <small *ngIf="password.errors.minlength">Password should contain
+                                atleast
+                                {{password.errors.minlength.requiredLength}} charecters</small>
+                            <small *ngIf="password.errors.passWordMatch">The password you have
+                                entered is already matched
+                                with old password</small>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="form.errors" class="alert alert-danger">The username or password is incorrect</div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

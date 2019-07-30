@@ -1,0 +1,38 @@
+<!-- <div class="col-md-5 mt-4">
+    <div class="card card-body">
+        <input class="form-control" type="text" (keyup.enter)="addCourse(course)" #course />
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let course of courses.controls" (click)="removeCourse(course)">
+                {{course.value}}
+            </li>
+        </ul>
+    </div>
+</div> -->
+
+<div class="col-md-5 mt-4">
+    <div class="card card-body">
+        <form [formGroup]="formBuilderExample">
+            <div class="form-group">
+                <input placeholder="user name" class="form-control" formControlName="userName" />
+                <div class="text-danger" *ngIf="userName.touched && userName.invalid">
+                    <div *ngIf="userName.errors.required">User name is required</div>
+                </div>
+            </div>
+            <div formGroupName="contact">
+                <div class="form-group">
+                    <input type="email" placeholder="Email" class="form-control" formControlName="userEmail" />
+                    <div class="text-danger" *ngIf="userEmail.touched && userEmail.invalid">
+                        <div *ngIf="userEmail.errors.required">Email is required</div>
+                        <div *ngIf="userEmail.errors.email"> This is not an email</div>
+                    </div>
+                </div>
+            </div>
+            <input class="form-control" type="text" (keyup.enter)="addCourse(course)" #course />
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let course of courses.controls" (click)="removeCourse(course)">
+                    {{course.value}}
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
